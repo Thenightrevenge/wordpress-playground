@@ -6,7 +6,7 @@ import {
 	MenuGroup,
 	MenuItem,
 } from '@wordpress/components';
-import { moreVertical, plus, upload, link } from '@wordpress/icons';
+import { external, link, moreVertical, plus, upload } from '@wordpress/icons';
 import { Icon } from '@wordpress/icons';
 import { GitHubIcon } from '../../github/github';
 import { useState, useEffect, useRef } from 'react';
@@ -312,6 +312,14 @@ export function SavedPlaygroundsOverlay({
 		onClose();
 	}
 
+	function openBlueprintEditor() {
+		window.open(
+			'https://playground.wordpress.net/builder/builder.html',
+			'_blank',
+			'noopener,noreferrer'
+		);
+	}
+
 	const creationOptions = [
 		{
 			id: 'vanilla',
@@ -356,6 +364,13 @@ export function SavedPlaygroundsOverlay({
 				dispatch(setActiveModal(modalSlugs.BLUEPRINT_URL));
 			},
 			disabled: offline,
+		},
+		{
+			id: 'blueprint-editor',
+			title: 'Open Blueprint Editor',
+			icon: external,
+			onClick: openBlueprintEditor,
+			disabled: false,
 		},
 		{
 			id: 'zip',
